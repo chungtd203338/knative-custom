@@ -1,0 +1,13 @@
+#@ load("@ytt:overlay", "overlay")
+
+#@data/values
+---
+serving:
+  #@overlay/match missing_ok=True
+  ha:
+    components:
+    #@overlay/append
+    - net-contour-controller
+    #! This was the previous controller name
+    #@overlay/append
+    - contour-ingress-controller
