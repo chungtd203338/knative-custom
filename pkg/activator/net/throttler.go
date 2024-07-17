@@ -500,7 +500,7 @@ func (t *Throttler) Run(ctx context.Context, probeTransport http.RoundTripper, u
 func isInRange(activatorIP string, appSocket string) bool {
 	appIP, _, err := net.SplitHostPort(appSocket)
 	if err != nil {
-		log.Println("hctung57: Error splitting host and port:", err)
+		log.Println("activator: Error splitting host and port:", err)
 		return true
 	}
 	convertActivatorIP := net.ParseIP(activatorIP)
@@ -534,7 +534,7 @@ func (t *Throttler) run(updateCh <-chan revisionDestsUpdate) {
 			}
 
 			// delete(update.Dests, "10.233.75.55:8012")
-			log.Print("hctung57 logs update:", update)
+			log.Print("activator logs update:", update)
 			t.handleUpdate(update)
 		case eps := <-t.epsUpdateCh:
 			t.handlePubEpsUpdate(eps)
